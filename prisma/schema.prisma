@@ -114,6 +114,7 @@ model Activities {
   seats         Int
   EventDay      EventDay        @relation(fields: [eventDayId], references: [id])
   ActivitySeats ActivitySeats[]
+  @@index([eventDayId])
 }
 
 model ActivitySeats {
