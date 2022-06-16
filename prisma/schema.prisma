@@ -107,20 +107,22 @@ model EventDay {
 model Activities {
   id            Int             @id @default(autoincrement())
   name          String          @db.VarChar(255)
-  startTime     DateTime
-  endTime       DateTime
+  startTime     String
+  endTime       String
   local         Local
   eventDayId    Int
+  seats         Int
   EventDay      EventDay        @relation(fields: [eventDayId], references: [id])
   ActivitySeats ActivitySeats[]
+  @@index([eventDayId])
 }
 
 model ActivitySeats {
   id         Int        @id @default(autoincrement())
   activityId Int
-  userId     Int?
+  userId     Int
   Activity   Activities @relation(fields: [activityId], references: [id])
-  User       User?      @relation(fields: [userId], references: [id])
+  User       User      @relation(fields: [userId], references: [id])
 }
 
 enum Type {

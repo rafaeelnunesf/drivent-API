@@ -4,7 +4,6 @@ const prisma = new PrismaClient();
 async function main() {
   let hotels = await prisma.hotels.findMany();
   if (hotels.length === 0) {
-    console.log('To entrando no if');
     await prisma.hotels.createMany({
       data: [
         {
@@ -26,7 +25,6 @@ async function main() {
     });
   }
   hotels = await prisma.hotels.findMany();
-  console.log(hotels);
   let bedrooms = await prisma.bedrooms.findMany();
 
   if (bedrooms.length === 0) {
@@ -90,6 +88,241 @@ async function main() {
         });
       }
     }
+  }
+
+  const eventDays = await prisma.eventDay.findMany();
+  if( eventDays.length === 0) {
+    await prisma.eventDay.createMany({
+      data: [
+        {
+          name: 'Sexta, 22/10'
+        },
+        {
+          name: 'Sabado, 23/10'
+        },
+        {
+          name: 'Domingo, 24/10'
+        }
+      ],
+      skipDuplicates: true
+    })
+  }
+  
+  const activities = await prisma.activities.findMany();
+  if(activities.length === 0) {
+    await prisma.activities.createMany({
+      data: [
+        {
+          name: 'R6',
+          startTime: '9:00',
+          endTime: '11:00',
+          local: 'LATERAL',
+          eventDayId: 1,
+          seats: 30
+        },
+        {
+          name: 'CS:GO',
+          startTime: '11:00',
+          endTime: '12:00',
+          local: 'LATERAL',
+          eventDayId: 1,
+          seats: 30
+        },
+        {
+          name: 'Valorant',
+          startTime: '12:00',
+          endTime: '13:00',
+          local: 'LATERAL',
+          eventDayId: 1,
+          seats: 30
+        },
+        {
+          name: 'Call of duty',
+          startTime: '9:00',
+          endTime: '10:00',
+          local: 'MAIN',
+          eventDayId: 1,
+          seats: 30
+        },
+        {
+          name: 'Destiny',
+          startTime: '10:00',
+          endTime: '12:00',
+          local: 'MAIN',
+          eventDayId: 1,
+          seats: 30
+        },
+        {
+          name: 'Battlefield',
+          startTime: '12:00',
+          endTime: '13:00',
+          local: 'MAIN',
+          eventDayId: 1,
+          seats: 30
+        },
+        {
+          name: 'Minecraft',
+          startTime: '9:00',
+          endTime: '10:00',
+          local: 'WORKSHOP',
+          eventDayId: 1,
+          seats: 30
+        },
+        {
+          name: 'Rust',
+          startTime: '10:00',
+          endTime: '11:00',
+          local: 'WORKSHOP',
+          eventDayId: 1,
+          seats: 30
+        },
+        {
+          name: 'Deep rock galactic',
+          startTime: '11:00',
+          endTime: '13:00',
+          local: 'WORKSHOP',
+          eventDayId: 1,
+          seats: 30
+        },
+        {
+          name: 'R6',
+          startTime: '9:00',
+          endTime: '12:00',
+          local: 'LATERAL',
+          eventDayId: 2,
+          seats: 30
+        },
+        {
+          name: 'CS:GO',
+          startTime: '12:00',
+          endTime: '13:00',
+          local: 'LATERAL',
+          eventDayId: 2,
+          seats: 30
+        },
+        {
+          name: 'Valorant',
+          startTime: '13:00',
+          endTime: '14:00',
+          local: 'LATERAL',
+          eventDayId: 2,
+          seats: 0
+        },
+        {
+          name: 'Call of duty',
+          startTime: '9:00',
+          endTime: '10:00',
+          local: 'MAIN',
+          eventDayId: 2,
+          seats: 30
+        },
+        {
+          name: 'Destiny',
+          startTime: '10:00',
+          endTime: '11:00',
+          local: 'MAIN',
+          eventDayId: 2,
+          seats: 30
+        },
+        {
+          name: 'Minecraft',
+          startTime: '9:00',
+          endTime: '10:00',
+          local: 'WORKSHOP',
+          eventDayId: 2,
+          seats: 0
+        },
+        {
+          name: 'Rust',
+          startTime: '10:00',
+          endTime: '11:00',
+          local: 'WORKSHOP',
+          eventDayId: 2,
+          seats: 30
+        },
+        {
+          name: 'Deep rock galactic',
+          startTime: '11:00',
+          endTime: '13:00',
+          local: 'WORKSHOP',
+          eventDayId: 2,
+          seats: 0
+        },
+        {
+          name: 'R6',
+          startTime: '9:00',
+          endTime: '12:00',
+          local: 'LATERAL',
+          eventDayId: 3,
+          seats: 12
+        },
+        {
+          name: 'CS:GO',
+          startTime: '12:00',
+          endTime: '13:00',
+          local: 'LATERAL',
+          eventDayId: 3,
+          seats: 0
+        },
+        {
+          name: 'Valorant',
+          startTime: '13:00',
+          endTime: '14:00',
+          local: 'LATERAL',
+          eventDayId: 3,
+          seats: 0
+        },
+        {
+          name: 'Call of duty',
+          startTime: '9:00',
+          endTime: '10:00',
+          local: 'MAIN',
+          eventDayId: 3,
+          seats: 24
+        },
+        {
+          name: 'Destiny',
+          startTime: '10:00',
+          endTime: '11:00',
+          local: 'MAIN',
+          eventDayId: 3,
+          seats: 0
+        },
+        {
+          name: 'Battlefield',
+          startTime: '11:00',
+          endTime: '15:00',
+          local: 'MAIN',
+          eventDayId: 3,
+          seats: 30
+        },
+        {
+          name: 'Minecraft',
+          startTime: '9:00',
+          endTime: '10:00',
+          local: 'WORKSHOP',
+          eventDayId: 3,
+          seats: 2
+        },
+        {
+          name: 'Rust',
+          startTime: '10:00',
+          endTime: '11:00',
+          local: 'WORKSHOP',
+          eventDayId: 3,
+          seats: 14
+        },
+        {
+          name: 'Deep rock galactic',
+          startTime: '11:00',
+          endTime: '13:00',
+          local: 'WORKSHOP',
+          eventDayId: 3,
+          seats: 23
+        },
+      ],
+      skipDuplicates: true
+    })
   }
 }
 
